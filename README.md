@@ -8,4 +8,14 @@ The current biggest downfall is that it's hard to keep them all synchronized, as
 
 ## Usage
 
-🚧 Under construction 🚧
+Move into the site builder directory
+
+  cd site-specific-builder
+
+Then, run the `builder.py` script
+
+  python builder.py
+
+Follow the prompts in the command line. The pages should be generated into the
+`build/` folder.
+  
