@@ -1,9 +1,0 @@
-{
-  "_comment": [
-    "Config for Site Specific page layout.",
-    "Parameters: header_mb-4 (bool), header_content (file name), footer_content (file name)"
-  ],
-  "header_mb-4": true,
-  "header_content": "./site-specific/header.html",
-  "footer_content": "./site-specific/footer.html"
-}

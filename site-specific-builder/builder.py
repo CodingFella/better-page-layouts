@@ -1,6 +1,8 @@
 import re
 import json
 import os
+import shutil
+from datetime import datetime
 
 HEADER_BASE = './header_base.html'
 FOOTER_BASE = './footer_base.html'
@@ -47,10 +49,15 @@ def render_line(page_layout, data, line, context):
     return modifiedLine;
 
 
-
 def build_file(page_layout: str):
-    json_config = './' + page_layout + '/config.json'
 
+    # get generate date and time
+    now = datetime.now()
+    formatted = now.strftime("%Y-%m-%d %H:%M:%S")
+    generate_statement = "<!-- File was automatically generated at " + formatted + " -->\n"
+
+    # create build tree
+    json_config = './' + page_layout + '/config.json'
     output_dir = f'build/{page_layout}'
     os.makedirs(output_dir, exist_ok=True)  # create dir if it doesn't exist
 
@@ -60,7 +67,9 @@ def build_file(page_layout: str):
     with open(json_config, 'r') as f:
         data = json.load(f)
 
+    # build files
     with open(HEADER_BASE, 'r') as header_in, open(header_output, 'w') as header_out:
+        header_out.write(generate_statement)
         file_start = False
         for line in header_in:
             if BEGIN_KEY in line:
@@ -70,6 +79,7 @@ def build_file(page_layout: str):
                 header_out.write(rendered)
 
     with open(FOOTER_BASE, 'r') as footer_in, open(footer_output, 'w') as footer_out:
+        footer_out.write(generate_statement)
         file_start = False
         for line in footer_in:
             if BEGIN_KEY in line:
@@ -78,37 +88,50 @@ def build_file(page_layout: str):
                 rendered = render_line(page_layout, data, line, data)
                 footer_out.write(rendered)
 
-build_options = {
-    "Site Specific": "site-specific",
-    "Site Specific: Full Width": "site-specific-full-width"
-}
+def main():
+    # remove build tree
+    build_root = 'build'
+    if os.path.exists(build_root):
+        shutil.rmtree(build_root)
+    os.makedirs(build_root, exist_ok=True)
 
-print("Which file to build?")
+    build_options = {
+        "Site Specific": "site_specific",
+        "Site Specific: Cover Image": "site_specific_cover_image",
+        "Site Specific: Full Width": "site_specific_full_width",
+        "Site Specific: Landing Page": "site_specific_landing_page",
+        "Site Specific: Mobile Optimized": "site_specific_mobile_optimized",
+        "Site Specific: Sidebar Breakout Landing":
+        "site_specific_sidebar_breakout_landing"
+    }
 
-options_list = list(build_options.keys())
+    print("Which file to build?")
 
-for i, b in enumerate(options_list):
-    print(i, "-", b)
+    options_list = list(build_options.keys())
 
-print(ALL,  "- All files")
-selection = input("Pick page layout: ")  # input() takes one argument: the prompt
+    for i, b in enumerate(options_list):
+        print(i, "-", b)
+    print(ALL,  "- All files")
 
-if (selection == ALL):
-    for option in build_options:
-        selected_value = build_options[option]
+    selection = input("Pick page layout: ")  # input() takes one argument: the prompt
 
-        print("Building", selected_value)
+    if (selection == ALL):
+        for option in build_options:
+            selected_value = build_options[option]
 
+            print("Building", selected_value)
+            build_file(selected_value)
+
+        print("Finished generating all files.")
+    else:
+        selected_key = options_list[int(selection)]
+        selected_value = build_options[selected_key]
+
+        print("Building ", selected_value)
         build_file(selected_value)
 
-    print("Finished generating all files.")
+        print("Finished generating ", selected_value, " files.")
 
-else:
-    selected_key = options_list[int(selection)]
-    selected_value = build_options[selected_key]
-    print("Building ", selected_value)
 
-    build_file(selected_value)
-
-    print("Finished generating ", selected_value, " files.")
-
+if __name__ == "__main__":
+    main()

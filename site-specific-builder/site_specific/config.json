@@ -1,0 +1,10 @@
+{
+  "_comment": [
+    "Config for Site Specific page layout.",
+    "Parameters: page_layout_id (int), header_mb-4 (bool), header_content (file name), footer_content (file name)"
+  ],
+  "page_layout_id": 2230,
+  "header_mb-4": true,
+  "header_content": "./site_specific/header.html",
+  "footer_content": "./site_specific/footer.html"
+}

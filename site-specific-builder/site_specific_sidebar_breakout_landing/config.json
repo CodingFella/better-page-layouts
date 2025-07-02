@@ -1,0 +1,10 @@
+{
+  "_comment": [
+    "Config for Site Specific: Sidebar Breakout Landing page layout.",
+    "Parameters: page_layout_id (int), header_mb-4 (bool), header_content (file name), footer_content (file name)"
+  ],
+  "page_layout_id": 381991,
+  "header_mb-4": false,
+  "header_content": "./site_specific_sidebar_breakout_landing/header.html",
+  "footer_content": "./site_specific_sidebar_breakout_landing/footer.html"
+}
