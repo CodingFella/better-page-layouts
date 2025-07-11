@@ -5,6 +5,6 @@
   ],
   "page_layout_id": 381991,
   "header_mb-4": false,
-  "header_content": "./site_specific_sidebar_breakout_landing/header.html",
-  "footer_content": "./site_specific_sidebar_breakout_landing/footer.html"
+  "header_content": "./site_specific/site_specific_sidebar_breakout_landing/header.html",
+  "footer_content": "./site_specific/site_specific_sidebar_breakout_landing/footer.html"
 }

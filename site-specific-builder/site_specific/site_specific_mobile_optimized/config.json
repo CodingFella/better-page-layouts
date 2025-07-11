@@ -5,6 +5,6 @@
   ],
   "page_layout_id": 399169,
   "header_mb-4": true,
-  "header_content": "./site_specific_mobile_optimized/header.html",
-  "footer_content": "./site_specific_mobile_optimized/footer.html"
+  "header_content": "./site_specific/site_specific_mobile_optimized/header.html",
+  "footer_content": "./site_specific/site_specific_mobile_optimized/footer.html"
 }

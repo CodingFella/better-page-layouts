@@ -5,6 +5,6 @@
   ],
   "page_layout_id": 381990,
   "header_mb-4": false,
-  "header_content": "./site_specific_cover_image/header.html",
-  "footer_content": "./site_specific_cover_image/footer.html"
+  "header_content": "./site_specific/site_specific_cover_image/header.html",
+  "footer_content": "./site_specific/site_specific_cover_image/footer.html"
 }

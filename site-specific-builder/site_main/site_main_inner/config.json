@@ -1,0 +1,9 @@
+{
+  "_comment": [
+    "Config for Site Main: Inner page layout.",
+    "Parameters: page_layout_id (int), header_mb-4 (bool), header_content (file name), footer_content (file name)"
+  ],
+  "page_layout_id": 2228,
+  "header_content": "./site_main/site_main_inner/header.html",
+  "footer_content": "./site_main/site_main_inner/footer.html"
+}
