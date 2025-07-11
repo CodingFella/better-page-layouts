@@ -3,6 +3,8 @@
     "Config for Site Main: Inner page layout.",
     "Parameters: page_layout_id (int), header_mb-md-5 (bool), header_content (file name), footer_content (file name)"
   ],
+  "page_layout_name": "Site Main: Inner",
+  "description": "Inner page with menu, also used for the department pages",
   "page_layout_id": 2228,
   "header_mb-md-5": true,
   "header_content": "./site_main/site_main_inner/header.html",

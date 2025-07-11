@@ -2,6 +2,8 @@ import re
 import json
 import os
 import shutil
+import requests
+from dotenv import load_dotenv
 from datetime import datetime
 
 class bcolors:
@@ -20,6 +22,10 @@ SITE_SPECIFIC_FOOTER_BASE = './site_specific/site_specific_footer_base.html'
 
 SITE_MAIN_HEADER_BASE = './site_main/site_main_header_base.html' 
 SITE_MAIN_FOOTER_BASE = './site_main/site_main_footer_base.html'
+
+LOCAL = 0
+T4DEV = 1
+T4PROD = 2
 
 # Sometimes the file needs some tags at the top to balance out what it contains so the formatter can make it look pretty.
 BEGIN_KEY = '#begin'
@@ -110,7 +116,94 @@ def build_file(page_layout: str, header_base: str, footer_base: str):
                 rendered = render_line(page_layout, data, line, data)
                 footer_out.write(rendered)
 
+def upload_file(page_layout: str, build_location: int):
+    load_dotenv()
+
+    auth_token = ""
+    base_url = ""
+
+    json_config = './' + page_layout + '/config.json'
+    
+    with open(json_config, 'r') as f:
+        data = json.load(f)
+    
+    page_layout_id = data["page_layout_id"]
+    page_layout_name = data["page_layout_name"]
+    page_layout_description = data["description"]
+
+    if build_location == T4DEV:
+        auth_token = os.getenv("T4DEV_AUTH_TOKEN")
+        base_url = "https://t4dev.scu.edu/terminalfour/rs/pageLayout/"
+
+    elif build_location == T4PROD:
+        auth_token = os.getenv("T4PROD_AUTH_TOKEN")
+        # base_url = "https://t4.scu.edu/terminalfour/rs/pageLayout/"
+    else:
+        raise ValueError("Invalid build location")
+
+    if not auth_token:
+        raise ValueError("auth_token environment variable is not set")
+
+    headerCode = ""
+    footerCode = ""
+
+    json_config = './' + page_layout + '/config.json'
+    
+    with open(json_config, 'r') as f:
+        data = json.load(f)
+    
+    page_layout_id = data["page_layout_id"]
+
+    print(page_layout_id)
+
+    base_url += str(page_layout_id)
+
+    output_dir = f'build/{page_layout}'
+
+    header_file_path = os.path.join(output_dir, 'header.html')
+    footer_file_path = os.path.join(output_dir, 'footer.html')
+
+    header_content = ""
+    footer_content = ""
+
+    with open(header_file_path, 'r', encoding='utf-8') as f:
+        header_content = f.read()
+    
+    with open(footer_file_path, 'r', encoding='utf-8') as f:
+        footer_content = f.read()
+
+    payload = json.dumps({
+        "name": str(page_layout_name),
+        "description": str(page_layout_description),
+        "syntaxType": 0,
+        "status": 0,
+        "headerCode": str(header_content),
+        "footerCode": str(footer_content),
+        "stylesheetCode": "",
+        "fileExtension": "",
+        "contentLayout": "",
+        "currentVersion": "3.0",
+        "language": "en",
+        "layoutProcessor": 1,
+        "typeContent": "pageLayout",
+        "showOwner": False,
+        "id": str(page_layout_id),
+        "editable": True,
+        "sharedGroupCount": 0,
+        "sharedGroups": [],
+        "fullAccess": True
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': auth_token
+    }
+
+    response = requests.request("PUT", base_url, headers=headers, data=payload)
+
+    print(response.text)
+
 def main():
+    upload_location = LOCAL
 
     header_base = ""
     footer_base = ""
@@ -120,6 +213,30 @@ def main():
     if os.path.exists(build_root):
         shutil.rmtree(build_root)
     os.makedirs(build_root, exist_ok=True)
+
+    make_options = [
+        "Build locally",
+        "Build locally and upload to T4 dev",
+        "Build locally and upload to T4 production"
+    ]
+
+    print("What to do with the files?")
+
+    for i, b in enumerate(make_options):
+        print(i, "-", b)
+
+    selection = int(input("Choose a make option: "))
+
+    if selection == LOCAL:
+        print(bcolors.OKBLUE + "Changes will not be uploaded" + bcolors.ENDC)
+    elif selection == T4DEV:
+        print(bcolors.OKBLUE + "Changes will be uploaded to T4 dev" + bcolors.ENDC)
+    elif selection == T4PROD:
+        print(bcolors.WARNING + "WARNING: Changes will be uploaded to T4 production")
+    else:
+        raise ValueError("Invalid make option")
+
+    upload_location = selection
 
     build_options = {
         # Site Specific build options
@@ -164,6 +281,9 @@ def main():
             print("Building", selected_value)
             build_file(selected_value, header_base, footer_base)
 
+            if upload_location != LOCAL:
+                upload_file(selected_value, upload_location)
+
         print(bcolors.OKGREEN + "Finished generating all files.")
     else:
         if int(selection) < 0 or int(selection) >= len(build_options):
@@ -182,6 +302,9 @@ def main():
 
         print("Building " + selected_value)
         build_file(selected_value, header_base, footer_base)
+
+        if upload_location != LOCAL:
+            upload_file(selected_value, upload_location)
 
         print("Finished generating " + selected_value + " files.")
 

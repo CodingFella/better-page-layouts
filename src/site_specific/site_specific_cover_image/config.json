@@ -3,6 +3,8 @@
     "Config for Site Specific: Cover Image page layout.",
     "Parameters: page_layout_id (int), header_mb-4 (bool), header_content (file name), footer_content (file name)"
   ],
+  "page_layout_name": "Site Specific: Cover Image",
+  "description": "Use a background image in place of a jumbotron",
   "page_layout_id": 381990,
   "header_mb-4": false,
   "header_content": "./site_specific/site_specific_cover_image/header.html",

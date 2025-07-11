@@ -3,6 +3,8 @@
     "Config for Site Specific: Full Width page layout.",
     "Parameters: page_layout_id (int), header_mb-4 (bool), header_content (file name), footer_content (file name)"
   ],
+  "page_layout_name": "Site Specific: Full Width",
+  "description": "Omits the right sidebar column",
   "page_layout_id": 20473,
   "header_mb-4": true,
   "header_content": "./site_specific/site_specific_full_width/header.html",

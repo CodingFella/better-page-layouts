@@ -3,6 +3,8 @@
     "Config for Site Specific: Mobile Optimized page layout.",
     "Parameters: page_layout_id (int), header_mb-4 (bool), header_content (file name), footer_content (file name)"
   ],
+  "page_layout_name": "Site Specific: Mobile Optimized",
+  "description": "Sidebar menu and content is positioned first in mobile view",
   "page_layout_id": 399169,
   "header_mb-4": true,
   "header_content": "./site_specific/site_specific_mobile_optimized/header.html",

@@ -3,6 +3,8 @@
     "Config for Site Main: Landing Page page layout.",
     "Parameters: page_layout_id (int), header_mb-md-5 (bool), header_content (file name), footer_content (file name)"
   ],
+  "page_layout_name": "Site Main: Landing Page",
+  "description": "Global navigation and full width landing page content",
   "page_layout_id": 412160,
   "header_mb-md-5": false,
   "header_content": "./site_main/site_main_landing_page/header.html",

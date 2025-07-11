@@ -3,6 +3,8 @@
     "Config for Site Main: Full Width page layout.",
     "Parameters: page_layout_id (int), header_mb-md-5 (bool), header_content (file name), footer_content (file name)"
   ],
+  "page_layout_name": "Site Main: Full Width",
+  "description": "Full width inner layout",
   "page_layout_id": 2229,
   "header_mb-md-5": true,
   "header_content": "./site_main/site_main_full_width/header.html",

@@ -3,6 +3,8 @@
     "Config for Site Specific: Landing Page page layout.",
     "Parameters: page_layout_id (int), header_mb-4 (bool), header_content (file name), footer_content (file name)"
   ],
+  "page_layout_name": "Site Specific: Landing Page",
+  "description": "Landing page with global and site specific nav and footer",
   "page_layout_id": 273060,
   "header_mb-4": false,
   "header_content": "./site_specific/site_specific_landing_page/header.html",

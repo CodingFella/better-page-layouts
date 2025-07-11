@@ -1,1 +1,3 @@
-site-specific-builder/build/
+src/build/
+src/.env
+src/myenv/

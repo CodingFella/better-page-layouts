@@ -3,6 +3,8 @@
     "Config for Site Main: Mobile Optimized page layout.",
     "Parameters: page_layout_id (int), header_mb-md-5 (bool), header_content (file name), footer_content (file name)"
   ],
+  "page_layout_name": "Site Main: Mobile Optimized",
+  "description": "Sidebar menu and content is positioned first in mobile view",
   "page_layout_id": 399175,
   "header_mb-md-5": true,
   "header_content": "./site_main/site_main_mobile_optimized/header.html",
