@@ -2,7 +2,7 @@
 
 ## Goal
 
-Create a better way of managing page layouts on TerminalFour, specifically catered for [Santa Clara University](https://www.scu.edu)
+Create a better way of managing page layouts on TerminalFour, specifically catered for [Santa Clara University](https://www.scu.edu).
 
 The current biggest downfall is that it's hard to keep them all synchronized, as the current approach is to update them one at a time. However, many of them of have repeated components, such as the `<head>` and `<nav>`, which begs for a simpler, more programmable approach.
 
