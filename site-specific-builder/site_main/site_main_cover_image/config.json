@@ -1,9 +1,10 @@
 {
   "_comment": [
     "Config for Site Main: Cover Image page layout.",
-    "Parameters: page_layout_id (int), header_mb-4 (bool), header_content (file name), footer_content (file name)"
+    "Parameters: page_layout_id (int), header_mb-md-5 (bool), header_content (file name), footer_content (file name)"
   ],
   "page_layout_id": 398469,
+  "header_mb-md-5": false,
   "header_content": "./site_main/site_main_cover_image/header.html",
   "footer_content": "./site_main/site_main_cover_image/footer.html"
 }

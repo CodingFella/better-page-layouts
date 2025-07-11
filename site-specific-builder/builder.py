@@ -4,6 +4,17 @@ import os
 import shutil
 from datetime import datetime
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 SITE_SPECIFIC_HEADER_BASE = './site_specific/site_specific_header_base.html' 
 SITE_SPECIFIC_FOOTER_BASE = './site_specific/site_specific_footer_base.html'
 
@@ -16,9 +27,16 @@ ALL = 'a';
 
 def get_replacement(page_layout: str, data: dict, key: str):
     if key == "header_mb-4":
-        # check if true or false. If true, return "mb-4", which will place a margin below
+        # check if true or false. If true, return "mb-4", which will place a margin below the header
         if data[key]:
             return " mb-4"
+        else:
+            return ""
+
+    elif key == "header_mb-md-5":
+        # check if true or false. If true, return " mb-4", which will place a margin below the header
+        if data[key]:
+            return " mb-md-5"
         else:
             return ""
 
@@ -146,8 +164,12 @@ def main():
             print("Building", selected_value)
             build_file(selected_value, header_base, footer_base)
 
-        print("Finished generating all files.")
+        print(bcolors.OKGREEN + "Finished generating all files.")
     else:
+        if int(selection) < 0 or int(selection) >= len(build_options):
+            print(bcolors.FAIL + "FAIL: Invalid choice. Aborting process!")
+            raise ValueError("Check if input is valid")
+
         selected_key = options_list[int(selection)]
         selected_value = build_options[selected_key]
 
@@ -158,10 +180,10 @@ def main():
             header_base = SITE_MAIN_HEADER_BASE
             footer_base = SITE_MAIN_FOOTER_BASE
 
-        print("Building ", selected_value)
+        print("Building " + selected_value)
         build_file(selected_value, header_base, footer_base)
 
-        print("Finished generating ", selected_value, " files.")
+        print("Finished generating " + selected_value + " files.")
 
 
 if __name__ == "__main__":
