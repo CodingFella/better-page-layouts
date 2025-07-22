@@ -2,6 +2,7 @@ import re
 import json
 import os
 import shutil
+import time
 import requests
 from dotenv import load_dotenv
 from datetime import datetime
@@ -31,6 +32,7 @@ T4PROD = 2
 BEGIN_KEY = '#begin'
 ALL = 'a';
 
+# Substitutes handlebar-esque statements with their correct replacements
 def get_replacement(page_layout: str, data: dict, key: str):
     if key == "header_mb-4":
         # check if true or false. If true, return "mb-4", which will place a margin below the header
@@ -67,6 +69,7 @@ def get_replacement(page_layout: str, data: dict, key: str):
         raise ExceptionType("Unrecognizable key")
 
 
+# Goes line by line and calls the replacement method
 def render_line(page_layout, data, line, context):
     matches = re.findall(r"{{\s*(.*?)\s*}}", line)
     modifiedLine = line
@@ -77,6 +80,7 @@ def render_line(page_layout, data, line, context):
     return modifiedLine;
 
 
+# builds the actual file
 def build_file(page_layout: str, header_base: str, footer_base: str):
 
     # get generate date and time
@@ -116,6 +120,7 @@ def build_file(page_layout: str, header_base: str, footer_base: str):
                 rendered = render_line(page_layout, data, line, data)
                 footer_out.write(rendered)
 
+# uses the API to upload it to the corresponding server
 def upload_file(page_layout: str, build_location: int):
     load_dotenv()
 
@@ -154,7 +159,7 @@ def upload_file(page_layout: str, build_location: int):
     
     page_layout_id = data["page_layout_id"]
 
-    print(page_layout_id)
+    # print(page_layout_id)
 
     base_url += str(page_layout_id)
 
@@ -175,7 +180,7 @@ def upload_file(page_layout: str, build_location: int):
     payload = json.dumps({
         "name": str(page_layout_name),
         "description": str(page_layout_description),
-        "syntaxType": 0,
+        "syntaxType": 3,
         "status": 0,
         "headerCode": str(header_content),
         "footerCode": str(footer_content),
@@ -195,12 +200,18 @@ def upload_file(page_layout: str, build_location: int):
     })
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': auth_token
+        'Authorization': auth_token,
+        'Accept': 'application/json',
+        'Connection': 'keep-alive'
     }
 
     response = requests.request("PUT", base_url, headers=headers, data=payload)
 
-    print(response.text)
+    with open("response.log", "a", encoding="utf-8") as log_file:
+        log_file.write(f"--- {datetime.now()} ---\n")
+        log_file.write(response.text + "\n")
+
+    print(bcolors.OKGREEN + "Upload success!" + bcolors.ENDC)
 
 def main():
     upload_location = LOCAL
@@ -265,7 +276,7 @@ def main():
         print(i, "-", b)
     print(ALL,  "- All files")
 
-    selection = input("Pick page layout: ")  # input() takes one argument: the prompt
+    selection = input("Pick page layout: ")
 
     if (selection == ALL):
         for option in build_options:
@@ -284,7 +295,8 @@ def main():
             if upload_location != LOCAL:
                 upload_file(selected_value, upload_location)
 
-        print(bcolors.OKGREEN + "Finished generating all files.")
+        print(bcolors.OKGREEN + "Finished generating all files." + bcolors.ENDC)
+
     else:
         if int(selection) < 0 or int(selection) >= len(build_options):
             print(bcolors.FAIL + "FAIL: Invalid choice. Aborting process!")
