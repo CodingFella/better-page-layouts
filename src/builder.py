@@ -142,7 +142,7 @@ def upload_file(page_layout: str, build_location: int):
 
     elif build_location == T4PROD:
         auth_token = os.getenv("T4PROD_AUTH_TOKEN")
-        # base_url = "https://t4.scu.edu/terminalfour/rs/pageLayout/"
+        base_url = "https://t4.scu.edu/terminalfour/rs/pageLayout/"
     else:
         raise ValueError("Invalid build location")
 
