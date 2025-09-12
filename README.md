@@ -10,11 +10,15 @@ The current biggest downfall is that it's hard to keep them all synchronized, as
 
 Move into the site builder directory
 
-    cd site-specific-builder
+    cd src/
 
 Then, run the `builder.py` script
 
     python builder.py
+
+You may need to go into a virtual environment. You can run that with
+
+    source myenv/bin/activate
 
 Follow the prompts in the command line. The pages should be generated into the
 `build/` folder.
