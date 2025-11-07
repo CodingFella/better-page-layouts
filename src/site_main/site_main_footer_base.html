@@ -12,8 +12,15 @@
       if ($('.accordion-item')) {
         $.getScript("https://www.scu.edu/media/scuedu/script-assets/accordion-toolkit.js");
       }
+      if ($('.animation-slide-up')) {
+        $.getScript("https://scu.edu/media/scuedu/script-assets/animation.js");
+      }
       $("table").addClass("table");
     });
+
+    if ($('.story-subhead')) {
+      $.getScript("https://assets.scu.edu/public/js/story-subhead.js");
+    }
   </script>
 
   <t4 type="navigation" name="Include Javascript in branch footer" id="401" />

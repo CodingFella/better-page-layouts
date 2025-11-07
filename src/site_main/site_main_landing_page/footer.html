@@ -2,4 +2,16 @@
   <main>
     <!-- #begin -->
   </main>
+
+  <t4 type="navigation" name="Lazy Loading" id="561" />
   <t4 type="navigation" name="Get Footer Block" id="479" />
+  <script>
+    window.addEventListener("error", function (e, url) {
+
+      var ele = e.target;
+      var url = ele.href + ' --- ' + ele.src;
+      console.log("ERROR LOADING ：" + url + " failed loading. ");
+      return true;
+
+    }, true);
+  </script>
