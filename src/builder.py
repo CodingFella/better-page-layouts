@@ -255,17 +255,17 @@ def main():
         "Site Specific: Cover Image": "site_specific/site_specific_cover_image",
         "Site Specific: Full Width": "site_specific/site_specific_full_width",
         "Site Specific: Landing Page": "site_specific/site_specific_landing_page",
-        "Site Specific: Mobile Optimized": "site_specific/site_specific_mobile_optimized",
         "Site Specific: Sidebar Breakout Landing":
         "site_specific/site_specific_sidebar_breakout_landing",
+        "Site Specific: Sidebar First": "site_specific/site_specific_sidebar_first",
 
         # Site Main build options
         "Site Main: Cover Image": "site_main/site_main_cover_image",
         "Site Main: Full Width": "site_main/site_main_full_width",
         "Site Main: Inner": "site_main/site_main_inner",
         "Site Main: Landing Page": "site_main/site_main_landing_page",
-        "Site Main: Mobile Optimized": "site_main/site_main_mobile_optimized",
-        "Site Main: Sidebar Breakout Landing": "site_main/site_main_sidebar_breakout_landing"
+        "Site Main: Sidebar Breakout Landing": "site_main/site_main_sidebar_breakout_landing",
+        "Site Main: Sidebar First": "site_main/site_main_sidebar_first"
     }
 
     print("Which file to build?")
