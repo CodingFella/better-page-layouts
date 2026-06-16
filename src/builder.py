@@ -252,7 +252,6 @@ def main():
     build_options = {
         # Site Specific build options
         "Site Specific": "site_specific/site_specific",
-        "Site Specific: Cover Image": "site_specific/site_specific_cover_image",
         "Site Specific: Full Width": "site_specific/site_specific_full_width",
         "Site Specific: Landing Page": "site_specific/site_specific_landing_page",
         "Site Specific: Sidebar Breakout Landing":
@@ -260,7 +259,6 @@ def main():
         "Site Specific: Sidebar First": "site_specific/site_specific_sidebar_first",
 
         # Site Main build options
-        "Site Main: Cover Image": "site_main/site_main_cover_image",
         "Site Main: Full Width": "site_main/site_main_full_width",
         "Site Main: Inner": "site_main/site_main_inner",
         "Site Main: Landing Page": "site_main/site_main_landing_page",

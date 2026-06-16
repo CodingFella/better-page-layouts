@@ -38,13 +38,6 @@
   <t4 type="navigation" name="Get OpenGraph Meta Tags for Fulltext" id="430" />
   <t4 type="navigation" name="Get OpenGraph Meta Tags for Single Full Content" id="431" />
 
-  <!--[if lte IE 9]>
-      <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"
-        async
-      ></script>
-    <![endif]-->
-
   <!-- external styles -->
 
   <link rel="stylesheet" href="https://use.typekit.net/gzb1rhy.css">
@@ -54,7 +47,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap')
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
   </style>
 
   <link rel="stylesheet" href="https://kit.fontawesome.com/895f1e62c1.css" crossorigin="anonymous">
@@ -63,16 +56,15 @@
   <!-- /external styles -->
 
   <!-- toolkit styles -->
-  <link rel="stylesheet" href="https://assets.scu.edu/public/scu.2.3.css" />
+  <link rel="stylesheet" href="https://assets.scu.edu/public/scu.2.0.css" />
   <link href="<t4 type='media' formatter='path/*' id='288401' />" rel="stylesheet" />
 
-  <!-- Avenir Next -->
-  <link rel="stylesheet" href="https://use.typekit.net/pcm8ajw.css">
   <!-- Minion Pro-->
   <link rel="stylesheet" href="https://use.typekit.net/pcm8ajw.css">
   <!-- /toolkit styles -->
 
   <script src="https://www.scu.edu/assets/public/scu.js"></script>
+
   <t4 type="navigation" name="Include external JS or CSS for a section" id="361" />
   <t4 type="navigation" name="Include CSS for a section" id="363" />
   <t4 type="navigation" name="Include CSS for a branch" id="364" />
@@ -90,7 +82,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white d-none d-lg-block py-0 initial nav-users" id="navbarUsers"
       role="navigation">
       <div class="container">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto" aria-label="Utility">
           <t4 type="navigation" name="Get Audience Nav - Legacy" id="499" />
           <li class="nav-item dropdown mr-1">
             <a class="nav-link collapsed text-capitalize px-3"
@@ -128,7 +120,7 @@
       </form>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-0 fixed-top nav-fixed initial nav-brand"
-      id="navbarBrand" role="navigation">
+      id="navbarBrand" aria-label="Primary">
       <div class="container">
         <button class="navbar-toggler px-3 py-2" type="button" data-toggle="collapse" data-target="#navbarBrandList"
           aria-controls="navbarBrandList" aria-expanded="false" aria-label="menu">
